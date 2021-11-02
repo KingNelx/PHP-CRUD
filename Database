@@ -1,0 +1,14 @@
+CREATE TABLE DotaHeroes(
+	Heroe_ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    Heroe_Name VARCHAR (200) NOT NULL,
+    Heroe_Role VARCHAR (200) NOT NULL,
+    Heroe_LanePhase VARCHAR (200) NOT NULL,
+    Heroe_BestItem VARCHAR (200) NOT NULL
+);
+
+INSERT INTO DotaHeroes (Heroe_Name, Heroe_Role, Heroe_LanePhase, Heroe_BestItem) 
+		VALUES ('Invoker', 'Nuker', 'Mid Laner', 'Aghanims');
+        
+        SELECT * FROM DotaHeroes;
+        
+        DROP TABLE DotaHeroes;
