@@ -49,8 +49,8 @@ require_once 'connect.php';
         <td>' . $row['Heroe_LanePhase'] . '</td>
         <td>' . $row['Heroe_BestItem'] . '</td>
         <td> 
-        <button class="btn btn-primary"> <a href="update.php? id = '. $row['Heroe_ID'].' " class = "text-light"> Update</a> </button>
-        <button class="btn btn-danger"> <a href="delete.php? id = '. $row['Heroe_ID'].'" class = "text-light">  Delete</a> </button>
+        <button class="btn btn-primary"> <a href="update.php?id='. $row['Heroe_ID'].' " class = "text-light"> Update</a> </button>
+        <button class="btn btn-danger"> <a href="delete.php?id='. $row['Heroe_ID'].'" class = "text-light">  Delete</a> </button>
         </td> 
         </tr>
       </thead>';
