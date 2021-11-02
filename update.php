@@ -1,23 +1,21 @@
 
 <?php
     require_once 'connect.php';
-    $Heroe_ID = $_GET['id'];
+    $ID = $_GET['id'];
     if(isset($_POST['submit'])){
         $Heroe_Name = mysqli_real_escape_string($connect, $_REQUEST['character_name']);
         $Heroe_Role = mysqli_real_escape_string($connect, $_REQUEST['character_role']);
         $Heroe_LanePhase = mysqli_real_escape_string($connect, $_REQUEST['character_lane']);
         $Heroe_BestItem = mysqli_real_escape_string($connect, $_REQUEST['character_bestItem']);
 
-            $sql = "UPDATE DotaHeroes set Heroe_ID = $Heroe_ID, Heroe_Role = '$Heroe_Role', 
+            $sql = "UPDATE DotaHeroes SET  Heroe_Role = '$Heroe_Role', 
                     Heroe_LanePhase = '$Heroe_LanePhase', Heroe_BestItem =  '$Heroe_BestItem' ";
-
             $result = mysqli_query($connect, $sql);
             if($result){
-                echo "UPDATED SUCCESFULLY";
+               header('location: display.php');
             }else{
                 echo "ERROR: " . mysqli_error($connect);
             }
-
             mysqli_close($connect);
     }
 ?>
