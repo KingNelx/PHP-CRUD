@@ -8,8 +8,8 @@
         $Heroe_LanePhase = mysqli_real_escape_string($connect, $_REQUEST['character_lane']);
         $Heroe_BestItem = mysqli_real_escape_string($connect, $_REQUEST['character_bestItem']);
 
-            $sql = "UPDATE DotaHeroes SET  Heroe_Role = '$Heroe_Role', 
-                    Heroe_LanePhase = '$Heroe_LanePhase', Heroe_BestItem =  '$Heroe_BestItem' ";
+            $sql = "UPDATE DotaHeroes SET Heroe_ID = $ID,Heroe_Name = '$Heroe_Name', Heroe_Role = '$Heroe_Role', 
+                    Heroe_LanePhase = '$Heroe_LanePhase', Heroe_BestItem =  '$Heroe_BestItem' WHERE Heroe_ID = $ID";
             $result = mysqli_query($connect, $sql);
             if($result){
                header('location: display.php');
