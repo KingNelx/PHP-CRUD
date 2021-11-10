@@ -15,3 +15,4 @@ What is mysqli real escape string function in PHP?
   
   Oh! I almost forgot. mysqli real escape string accept 2 parameters the connection and an associative array which is Request, by default (this one hold POST GET and Cookies)
    
+  What is Data masking? Data masking or data obfuscation is the process of modifying sensitive data in such a way that it is of no or little value to unauthorized intruders while still being usable by software or authorized personnel.
