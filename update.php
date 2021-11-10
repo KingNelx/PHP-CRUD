@@ -1,68 +1,73 @@
-
-<?php
-    require_once 'connect.php';
-    $ID = $_GET['id'];
-    if(isset($_POST['submit'])){
-        $Heroe_Name = mysqli_real_escape_string($connect, $_REQUEST['character_name']);
-        $Heroe_Role = mysqli_real_escape_string($connect, $_REQUEST['character_role']);
-        $Heroe_LanePhase = mysqli_real_escape_string($connect, $_REQUEST['character_lane']);
-        $Heroe_BestItem = mysqli_real_escape_string($connect, $_REQUEST['character_bestItem']);
-
-            $sql = "UPDATE DotaHeroes SET Heroe_ID = $ID,Heroe_Name = '$Heroe_Name', Heroe_Role = '$Heroe_Role', 
-                    Heroe_LanePhase = '$Heroe_LanePhase', Heroe_BestItem =  '$Heroe_BestItem' WHERE Heroe_ID = $ID";
-            $result = mysqli_query($connect, $sql);
-            if($result){
-               header('location: display.php');
-            }else{
-                echo "ERROR: " . mysqli_error($connect);
-            }
-            mysqli_close($connect);
-    }
-?>
-
-<!Doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <title>Crud Operation</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>CRUD OPERATION</title>
 </head>
 
 <body>
+
     <div class="container my-5">
-        <form method = "POST">
+        <form method="POST">
 
             <div class="mb-3">
-                <label  class="form-label">Character Name</label>
-                <input type="text" class="form-control" placeholder="Character Name" name = "character_name" required>
-            </div>
-            
-            <div class="mb-3">
-                <label  class="form-label">Character Role</label>
-                <input type="text" class="form-control" placeholder="Character Role" name = "character_role" required>
+                <label for="studentName" class="form-label">Full Name</label>
+                <input type="text" class="form-control" required placeholder="Full Name" name="studentName">
             </div>
 
             <div class="mb-3">
-                <label  class="form-label">Character Laning Phase</label>
-                <input type="text" class="form-control" placeholder="Character Lane Phase" name = "character_lane" required>
+                <label for="studentCourse" class="form-label">Student Course</label>
+                <input type="text" class="form-control" required placeholder="Student Course" name="studentCourse">
             </div>
 
             <div class="mb-3">
-                <label  class="form-label">Character Best Item</label>
-                <input type="text" class="form-control" placeholder="Character Best Item" name = "character_bestItem" required>
+                <label for="studentEmail" class="form-label">Email address</label>
+                <input type="email" class="form-control" required placeholder="Email address" name="studentEmail">
             </div>
 
-            <button type="submit" class="btn btn-primary" name = "submit">Submit</button>
+            <div class="mb-3">
+                <label for="studentPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" required placeholder="Password" name="studentPassword">
+            </div>
+
+            <div class="mb-3">
+                <label for="studentContactNumber" class="form-label">Contact Number</label>
+                <input type="text" class="form-control" required placeholder="Contact Number" name="studentContactNumber">
+            </div>
+
+            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
         </form>
     </div>
-
-
 </body>
 
 </html>
+
+<?php
+require_once 'connect.php';
+
+$ID = $_GET['id'];
+if (isset($_POST['submit'])) {
+    $studentName = mysqli_real_escape_string($connect, $_REQUEST['studentName']);
+    $studentCourse = mysqli_real_escape_string($connect, $_REQUEST['studentCourse']);
+    $studentEmail = mysqli_real_escape_string($connect, $_REQUEST['studentEmail']);
+    $studentPassword = mysqli_real_escape_string($connect, $_REQUEST['studentPassword']);
+    $studentContactNumber = mysqli_real_escape_string($connect, $_REQUEST['studentContactNumber']);
+
+    $sql = "UPDATE Students SET studentID = $ID, studentName = '$studentName', studentCourse = '$studentCourse', studentEmail = '$studentEmail'
+                , studentPassword = concat(substr('$studentPassword', 1, 5), repeat('#', char_length('$studentPassword') - 5)), studentContactNumber = '$studentContactNumber' WHERE studentID = $ID";
+
+    $result = mysqli_query($connect, $sql);
+
+    if (!$result) {
+        die(mysqli_error($connect));
+    } else {
+        header('location: view.php');
+    }
+
+    mysqli_close($connect);
+}
+?>
